@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('./partials/head.ejs') %>
+        <title>Sign Up | Review System</title>
+    </head>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+
+        <div class="container my-4 w-75 mx-auto">
+            <form id="signupForm" action="/user/signup" method="post" autocomplete="off">
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="fullName"
+                        placeholder="Enter Full Name"
+                        name="fullName" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        aria-describedby="email"
+                        placeholder="Enter email"
+                        name="email" />
+                    <small id="email" class="form-text text-muted"
+                        >We'll never share your email with anyone else.</small
+                    >
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        placeholder="Password"
+                        name="password" />
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="confirmPassword"
+                        placeholder="Confirm Password"
+                        name="confirmPassword" />
+                    <div id="passwordMatchError" class="text-danger" style="display: none">
+                        Passwords do not match!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="role" class="form-label">Role</label>
+                    <input
+                        type="radio"
+                        class="form-check-input"
+                        id="user"
+                        name="role"
+                        value="USER" />
+                    <label for="user">USER</label>
+                    <input
+                        type="radio"
+                        class="form-check-input"
+                        id="organizer"
+                        name="role"
+                        value="ORGANIZER" />
+                    <label for="organizer">ORGANIZER</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+
+        <%- include('./partials/scripts.ejs') %>
+        <script>
+            document.getElementById("signupForm").addEventListener("submit", function (event) {
+                var password = document.getElementById("password").value;
+                var confirmPassword = document.getElementById("confirmPassword").value;
+
+                if (password !== confirmPassword) {
+                    document.getElementById("passwordMatchError").style.display = "block";
+                    event.preventDefault();
+                } else if (password === confirmPassword) document.getElementById("passwordMatchError").style.display = "none";
+            });
+        </script>
+    </body>
+</html>

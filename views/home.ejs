@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('./partials/head.ejs') %>
+        <title>Home | Review System</title>
+    </head>
+    <body>
+        <%- include('./partials/nav') %>
+
+        <div class="container my-4">
+            <div class="d-flex flex-wrap">
+                <% events.forEach((event)=> { %>
+                <div class="card m-3 flex-item card text-white bg-dark" style="width: 18rem">
+                    <div class="card-body">
+                        <h5 class="card-title card-header" style="text-transform: capitalize">
+                            <%= event.title %>
+                        </h5>
+                        <div
+                            class="card-footer flex-item"
+                            style="display: flex; justify-content: space-between">
+                            <% if (locals.user) { %>
+                                <% if(event.registerUser.includes(user._id)) { %>
+                                    <a href="/" class="btn btn-success">Registered</a>
+                                <% } else { %>
+                                    <a href="/event/register/<%= event._id %>" class="btn btn-primary">Register</a>
+                                <% } %>
+                            <% } %>
+                            <a href="/event/<%= event._id %>" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+        <%- include('./partials/scripts') %>
+    </body>
+</html>

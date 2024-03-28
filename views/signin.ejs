@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sign In | Review System</title>
+        <%- include('./partials/head.ejs') %>
+    </head>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+
+        <div class="container mt-4 w-75 mx-auto">
+            <h3 class="mb-4 pb-3 border-bottom">Welcome back</h3>
+            <form action="/user/signin" method="post" autocomplete="off">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        aria-describedby="email"
+                        placeholder="Enter email"
+                        name="email" />
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        placeholder="Password"
+                        name="password" />
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+        </div>
+
+        <%- include('./partials/scripts.ejs') %>
+    </body>
+</html>
